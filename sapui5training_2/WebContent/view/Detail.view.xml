@@ -1,0 +1,87 @@
+<core:View controllerName="sap.ui.demo.myFiori.view.Detail"
+	xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Page id="detail" title="{i18n>DetailTitle}" class="sapUiFioriObjectPage"
+		showNavButton="{device/isPhone}" navButtonPress="handleNavButtonPress">
+		<ObjectHeader title="{dataModel>SoId}" number="{dataModel>GrossAmount}"
+			numberUnit="{dataModel>CurrencyCode}">
+			<attributes>
+				<ObjectAttribute text="{dataModel>BuyerName}" />
+				<ObjectAttribute text="{dataModel>CreatedByBp}" />
+				<ObjectAttribute
+					text="{
+					path: 'dataModel>CreatedAt',
+					formatter: 'sap.ui.demo.myFiori.util.Formatter.date'
+				}" />
+			</attributes>
+			<firstStatus>
+				<ObjectStatus
+					text="{
+						path: 'dataModel>LifecycleStatus',
+						formatter: 'sap.ui.demo.myFiori.util.Formatter.statusText'
+					}"
+					state="{
+						path: 'dataModel>LifecycleStatus',
+						formatter: 'sap.ui.demo.myFiori.util.Formatter.statusState'
+					}" />
+			</firstStatus>
+		</ObjectHeader>
+		<IconTabBar expanded="{device>/isNoPhone}">
+			<items>
+				<IconTabFilter icon="sap-icon://supplier">
+					<form:SimpleForm id="SupplierForm" minWidth="1024">
+						<core:Title text="Address" />
+						<Label text="Name" />
+						<Text text="{dataModel>BusinessPartner/CompanyName}" />
+						<Label text="City" />
+						<Text
+							text="{dataModel>BusinessPartner/City}, {dataModel>BusinessPartner/PostalCode}" />
+						<Label text="Street" />
+						<Text text="{dataModel>BusinessPartner/Street}" />
+					</form:SimpleForm>
+				</IconTabFilter>
+			</items>
+		</IconTabBar>
+		<Table headerText="{i18n>LineItemTableHeader}" items="{dataModel>LineItems}">
+			<columns>
+				<Column>
+					<header>
+						<Label text="Product" />
+					</header>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+					<header>
+						<Label text="Delivery Date" />
+					</header>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+					<header>
+						<Label text="Quantity" />
+					</header>
+				</Column>
+				<Column hAlign="Right">
+					<header>
+						<Label text="Price" />
+					</header>
+				</Column>
+			</columns>
+			<ColumnListItem type="Navigation" press="handleLineItemPress">
+				<cells>
+					<ObjectIdentifier title="{dataModel>ProductId}" />
+					<Text
+						text="{ path:'dataModel>DeliveryDate', formatter:'sap.ui.demo.myFiori.util.Formatter.date' }" />
+					<Text
+						text="{ path:'dataModel>Quantity', formatter:'sap.ui.demo.myFiori.util.Formatter.quantity' }" />
+					<ObjectNumber number="{dataModel>GrossAmount}" numberUnit="{dataModel>CurrencyCode}" />
+				</cells>
+			</ColumnListItem>
+		</Table>
+		<footer>
+			<Bar>
+				<contentRight>
+					<Button text="{i18n>ApproveButtonText}" type="Accept"
+						icon="sap-icon://accept" press="handleApprove" />
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</core:View>

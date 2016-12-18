@@ -1,0 +1,25 @@
+{	
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "JS",
+				"viewPath": "sap.ui.demo.myFiori.view",
+				"controlId": "splitApp",
+				"controlAggregation": "pages",
+				"transition": "slide"
+			},
+		"routes": [
+                {
+                    "pattern": "",
+                    "name": "master",
+                    "target": "master"
+                }
+            ],
+         "targets": {
+         "master": {
+         "viewName": "Master",
+         "controlAggregation":"Master"
+         }
+         }			
+		}
+}

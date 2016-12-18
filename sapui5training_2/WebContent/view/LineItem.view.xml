@@ -1,0 +1,21 @@
+<core:View controllerName="sap.ui.demo.myFiori.view.LineItem"
+	xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Page id="page" title=" {i18n>LineItemTitle}" showNavButton="true"
+		navButtonPress="handleNavBack">
+		<footer>
+			<Bar>
+			</Bar>
+		</footer>
+		<content>
+			<ObjectHeader title="{dataModel>ProductId}" number="{dataModel>GrossAmount}"
+				numberUnit="{dataModel>CurrencyCode}">
+				<attributes>
+					<ObjectAttribute
+						text="{ path:'dataModel>DeliveryDate', formatter:'sap.ui.demo.myFiori.util.Formatter.date' }" />
+					<ObjectAttribute
+						text="{ path:'dataModel>Quantity', formatter:'sap.ui.demo.myFiori.util.Formatter.quantity' }" />
+				</attributes>
+			</ObjectHeader>
+		</content>
+	</Page>
+</core:View>				
